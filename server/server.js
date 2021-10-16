@@ -30,6 +30,20 @@ app.use('/users', userRouter);
 
 app.use(express.static(path.join(__dirname, '../public')));
 
+//modify later
+app.post('/reservations/:id', (req, res) => {
+  const userId = req.session.userId;
+  console.log("printout the reservation body", req.params.id);
+  database.addReservation({...req.body, owner_id: userId, prop_id: req.params.id})
+    .then((reservation) => {
+      res.send(reservation);
+    }
+    ).catch(e => {
+      console.error(e);
+      res.send(e);
+    });
+});
+
 app.get("/test", (req, res) => {
   res.send("🤗");
 });

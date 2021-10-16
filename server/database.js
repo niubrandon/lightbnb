@@ -174,3 +174,18 @@ const addProperty = function(property) {
 };
 
 exports.addProperty = addProperty;
+
+//modify parmas later
+const addReservation = function(reservation) {
+  console.log("printout the reservation", reservation);
+  const queryString = `INSERT INTO reservations(start_date, end_date, property_id, guest_id)
+  VALUES('2025-01-01', '2025-01-05', $1, $2)
+  RETURNING *;
+ `;
+  const queryParams = [reservation["prop_id"], reservation["owner_id"]];
+  return db.query(queryString, queryParams);
+};
+
+exports.addReservation = addReservation;
+
+

@@ -1,3 +1,4 @@
+/* eslint-disable func-style */
 $(() => {
   window.propertyListing = {};
   
@@ -21,6 +22,10 @@ $(() => {
             <div class="property-listing__rating">${Math.round(property.average_rating * 100) / 100}/5 stars</div>
             <div class="property-listing__price">$${property.cost_per_night/100.0}/night</div>
           </footer>
+          <form method="post" action="/reservations/${property.id}">
+          <button id="reserve${property.id}" type="submit">Reserve
+          </button>
+          </form>
         </section>
       </article>
     `
